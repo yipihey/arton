@@ -1,0 +1,32 @@
+name: ArtonTopShelf
+options:
+  bundleIdPrefix: com.arton
+  deploymentTarget:
+    tvOS: "17.0"
+
+targets:
+  ArtonTopShelf:
+    type: tv-services-extension
+    platform: tvOS
+    sources:
+      - path: .
+        excludes:
+          - project.yml
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.arton.tvos.topshelf
+        INFOPLIST_FILE: Info.plist
+        CODE_SIGN_ENTITLEMENTS: ArtonTopShelf.entitlements
+        SWIFT_VERSION: "5.9"
+        GENERATE_INFOPLIST_FILE: YES
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0
+    entitlements:
+      path: ArtonTopShelf.entitlements
+      properties:
+        com.apple.developer.icloud-container-identifiers:
+          - iCloud.com.arton.galleries
+        com.apple.developer.icloud-services:
+          - CloudDocuments
+        com.apple.developer.ubiquity-container-identifiers:
+          - iCloud.com.arton.galleries

@@ -1,0 +1,60 @@
+name: Arton-tvOS
+options:
+  bundleIdPrefix: com.arton
+  deploymentTarget:
+    tvOS: "17.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+packages:
+  ArtonCore:
+    path: ../ArtonCore
+
+targets:
+  Arton-tvOS:
+    type: application
+    platform: tvOS
+    sources:
+      - path: .
+        excludes:
+          - project.yml
+          - "*.xcodeproj"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.arton.tvos
+        PRODUCT_NAME: Arton
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        INFOPLIST_GENERATION_MODE: GeneratedFile
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_ENTITLEMENTS: Arton.entitlements
+        SWIFT_VERSION: "5.9"
+    dependencies:
+      - package: ArtonCore
+      - target: ArtonTopShelf
+        embed: true
+    entitlements:
+      path: Arton.entitlements
+
+  ArtonTopShelf:
+    type: app-extension
+    platform: tvOS
+    sources:
+      - path: ../Arton-tvOS-TopShelf
+        excludes:
+          - project.yml
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.arton.tvos.topshelf
+        CODE_SIGN_ENTITLEMENTS: ../Arton-tvOS-TopShelf/ArtonTopShelf.entitlements
+        SWIFT_VERSION: "5.9"
+        GENERATE_INFOPLIST_FILE: YES
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.0
+    info:
+      path: ../Arton-tvOS-TopShelf/Info.plist
+      properties:
+        CFBundleDisplayName: Arton Top Shelf
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.tv-top-shelf
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ContentProvider

@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05DF62E07880708374B5F2DA /* ArtonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2104FD1F17C6BD8EBFA0BA2A /* ArtonApp.swift */; };
+		32905C4CBE8252D58DEDA107 /* SlideshowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D1A5350F8B04D63ABF6C7 /* SlideshowView.swift */; };
+		4E964762C31AF2E21E5E6809 /* ArtonWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A2A516F17870D5F3D06593AC /* ArtonWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		684CE6349169879BA739DBB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358ADA9D7E1BDF662A0CB28 /* ContentView.swift */; };
+		A277023ABD58EAC418822B20 /* ArtonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62CEA45F10798BDCBDC77C8 /* ArtonWidget.swift */; };
+		C523CDCAF2B7D652546FE06D /* ArtonCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8663D42D674898E60D764810 /* ArtonCore */; };
+		E6EEE82930A3CAACF185ECA3 /* GalleryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9961D9432F93B95BEBFED06D /* GalleryDetailView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		296607332A2F5F46EF297741 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD9F407764117710E8486820 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43563F629D4CDF2A39254588;
+			remoteInfo = ArtonWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1F12B5471F076D1FE0D57890 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4E964762C31AF2E21E5E6809 /* ArtonWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		014264E92D78DD00135CE6C6 /* ArtonWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ArtonWidgetExtension.entitlements; sourceTree = "<group>"; };
+		1F7D1A5350F8B04D63ABF6C7 /* SlideshowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowView.swift; sourceTree = "<group>"; };
+		2104FD1F17C6BD8EBFA0BA2A /* ArtonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtonApp.swift; sourceTree = "<group>"; };
+		5735D3434F7BB3A1C04F4C28 /* Arton.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Arton.entitlements; sourceTree = "<group>"; };
+		61747989E1AA3C554CFA950C /* ArtonCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ArtonCore; path = ../ArtonCore; sourceTree = SOURCE_ROOT; };
+		6F01EA287B239E64E091D392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7FBC51D667EFB1A62EF9478D /* Arton-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Arton-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9961D9432F93B95BEBFED06D /* GalleryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailView.swift; sourceTree = "<group>"; };
+		A2A516F17870D5F3D06593AC /* ArtonWidgetExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ArtonWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D62CEA45F10798BDCBDC77C8 /* ArtonWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtonWidget.swift; sourceTree = "<group>"; };
+		F358ADA9D7E1BDF662A0CB28 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC94D5B1115347DBBCDB02C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C523CDCAF2B7D652546FE06D /* ArtonCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00E0CC065AC921E7EE114FD6 /* Arton-iOS-Widget */ = {
+			isa = PBXGroup;
+			children = (
+				D62CEA45F10798BDCBDC77C8 /* ArtonWidget.swift */,
+				014264E92D78DD00135CE6C6 /* ArtonWidgetExtension.entitlements */,
+				6F01EA287B239E64E091D392 /* Info.plist */,
+			);
+			name = "Arton-iOS-Widget";
+			path = "../Arton-iOS-Widget";
+			sourceTree = "<group>";
+		};
+		0B07436DDBA58BE7055FA5E1 = {
+			isa = PBXGroup;
+			children = (
+				C2C57323505B6C00BFB95122 /* Arton-iOS */,
+				00E0CC065AC921E7EE114FD6 /* Arton-iOS-Widget */,
+				F7E06B6AF5D40DC27B8D715C /* Packages */,
+				97A0CC9328055F3479886428 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		97A0CC9328055F3479886428 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7FBC51D667EFB1A62EF9478D /* Arton-iOS.app */,
+				A2A516F17870D5F3D06593AC /* ArtonWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C2C57323505B6C00BFB95122 /* Arton-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				5735D3434F7BB3A1C04F4C28 /* Arton.entitlements */,
+				2104FD1F17C6BD8EBFA0BA2A /* ArtonApp.swift */,
+				F358ADA9D7E1BDF662A0CB28 /* ContentView.swift */,
+				9961D9432F93B95BEBFED06D /* GalleryDetailView.swift */,
+				1F7D1A5350F8B04D63ABF6C7 /* SlideshowView.swift */,
+			);
+			name = "Arton-iOS";
+			path = .;
+			sourceTree = "<group>";
+		};
+		F7E06B6AF5D40DC27B8D715C /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				61747989E1AA3C554CFA950C /* ArtonCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		29720E905AFA12915DE1FEBD /* Arton-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D57FD7C0DE1D83B034C5DD24 /* Build configuration list for PBXNativeTarget "Arton-iOS" */;
+			buildPhases = (
+				BF697D4FEC26117C0A9A7D26 /* Sources */,
+				EC94D5B1115347DBBCDB02C3 /* Frameworks */,
+				1F12B5471F076D1FE0D57890 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C588B5905DE1E65F2184826C /* PBXTargetDependency */,
+			);
+			name = "Arton-iOS";
+			packageProductDependencies = (
+				8663D42D674898E60D764810 /* ArtonCore */,
+			);
+			productName = "Arton-iOS";
+			productReference = 7FBC51D667EFB1A62EF9478D /* Arton-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		43563F629D4CDF2A39254588 /* ArtonWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7655CB1594F8572027BA0FB6 /* Build configuration list for PBXNativeTarget "ArtonWidgetExtension" */;
+			buildPhases = (
+				1972DB60D964F5DBF268FB17 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArtonWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = ArtonWidgetExtension;
+			productReference = A2A516F17870D5F3D06593AC /* ArtonWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CD9F407764117710E8486820 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = E81E16B0C1235BE3AA4CB0B9 /* Build configuration list for PBXProject "Arton-iOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 0B07436DDBA58BE7055FA5E1;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FD05BA4474B9A89F6F5A430D /* XCLocalSwiftPackageReference "../ArtonCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				29720E905AFA12915DE1FEBD /* Arton-iOS */,
+				43563F629D4CDF2A39254588 /* ArtonWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1972DB60D964F5DBF268FB17 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A277023ABD58EAC418822B20 /* ArtonWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF697D4FEC26117C0A9A7D26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DF62E07880708374B5F2DA /* ArtonApp.swift in Sources */,
+				684CE6349169879BA739DBB5 /* ContentView.swift in Sources */,
+				E6EEE82930A3CAACF185ECA3 /* GalleryDetailView.swift in Sources */,
+				32905C4CBE8252D58DEDA107 /* SlideshowView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C588B5905DE1E65F2184826C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43563F629D4CDF2A39254588 /* ArtonWidgetExtension */;
+			targetProxy = 296607332A2F5F46EF297741 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		308334A0929BD2259C6CAC07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		472934F42825F6390CBD57B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4BAC8F116CC5AADB4B6AF90E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "../Arton-iOS-Widget/ArtonWidgetExtension.entitlements";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "../Arton-iOS-Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arton.ios.widget;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		75B63CEE137B18D90CDA3BAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Arton.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_GENERATION_MODE = GeneratedFile;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arton.ios;
+				PRODUCT_NAME = Arton;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B0480936CC45E56D8E6D59B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Arton.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_GENERATION_MODE = GeneratedFile;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arton.ios;
+				PRODUCT_NAME = Arton;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E256838A09C8100C67C66741 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "../Arton-iOS-Widget/ArtonWidgetExtension.entitlements";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "../Arton-iOS-Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arton.ios.widget;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7655CB1594F8572027BA0FB6 /* Build configuration list for PBXNativeTarget "ArtonWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BAC8F116CC5AADB4B6AF90E /* Debug */,
+				E256838A09C8100C67C66741 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D57FD7C0DE1D83B034C5DD24 /* Build configuration list for PBXNativeTarget "Arton-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75B63CEE137B18D90CDA3BAD /* Debug */,
+				B0480936CC45E56D8E6D59B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E81E16B0C1235BE3AA4CB0B9 /* Build configuration list for PBXProject "Arton-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				308334A0929BD2259C6CAC07 /* Debug */,
+				472934F42825F6390CBD57B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		FD05BA4474B9A89F6F5A430D /* XCLocalSwiftPackageReference "../ArtonCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../ArtonCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8663D42D674898E60D764810 /* ArtonCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ArtonCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CD9F407764117710E8486820 /* Project object */;
+}

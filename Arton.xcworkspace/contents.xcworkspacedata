@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:ArtonCore">
+   </FileRef>
+   <FileRef
+      location = "group:Arton-tvOS/Arton-tvOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Arton-iOS/Arton-iOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Arton-macOS/Arton-macOS.xcodeproj">
+   </FileRef>
+</Workspace>

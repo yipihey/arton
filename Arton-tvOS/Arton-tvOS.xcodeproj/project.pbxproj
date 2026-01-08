@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F72EE6A75C9C986E0B281DC /* SlideshowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70356DB08315082FC1C1E6E /* SlideshowView.swift */; };
+		3529714D5DBA41100B177ED1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E325DEE22B8E55D4718DA /* ContentView.swift */; };
+		4B741489D87C10D8B2C7D150 /* ArtonTopShelf.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CF923BEB92AC484E5894935C /* ArtonTopShelf.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7392A0E8E80AE4A085FB0DD6 /* TopShelfProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483FCB4580539840B8FAEB7A /* TopShelfProvider.swift */; };
+		AB3C03DEA7B349C7BE0D5A4D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D9C1E03D477D290CEA2516 /* SettingsView.swift */; };
+		B1F81319275203AE7C2DA255 /* ArtonCore in Frameworks */ = {isa = PBXBuildFile; productRef = DEDC784DDF3A07851B46F036 /* ArtonCore */; };
+		D3828CABC7F31E65D41B4A28 /* GalleryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F6A6248B1A5DC44B5D3E18 /* GalleryPickerView.swift */; };
+		F730C24DDBBB92EF6670ABCC /* ArtonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3382331E2AB9B33EFF9353 /* ArtonApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8F14D6651D641C020D4FAE8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F30215596905C0572D994CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C8671A3EA1896578A38511A;
+			remoteInfo = ArtonTopShelf;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2595F84AD5A743A66CA581FD /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4B741489D87C10D8B2C7D150 /* ArtonTopShelf.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		19CC8A53366DDCC0193EEEC6 /* ArtonCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ArtonCore; path = ../ArtonCore; sourceTree = SOURCE_ROOT; };
+		19FB204A91987E78D7CA015E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		23FFFD5D23FD0D40387CB092 /* ArtonTopShelf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ArtonTopShelf.entitlements; sourceTree = "<group>"; };
+		2C4E325DEE22B8E55D4718DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		483FCB4580539840B8FAEB7A /* TopShelfProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopShelfProvider.swift; sourceTree = "<group>"; };
+		53F6A6248B1A5DC44B5D3E18 /* GalleryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPickerView.swift; sourceTree = "<group>"; };
+		56CD013271FA917ED9465719 /* Arton.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Arton.entitlements; sourceTree = "<group>"; };
+		66D9C1E03D477D290CEA2516 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8783C2343AE857A39AF0CF58 /* Arton-tvOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Arton-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A3382331E2AB9B33EFF9353 /* ArtonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtonApp.swift; sourceTree = "<group>"; };
+		CF923BEB92AC484E5894935C /* ArtonTopShelf.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ArtonTopShelf.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D70356DB08315082FC1C1E6E /* SlideshowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		39913ED2FB29902F1B382BB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1F81319275203AE7C2DA255 /* ArtonCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		14906886FE829D6A3467FCB8 /* Arton-tvOS-TopShelf */ = {
+			isa = PBXGroup;
+			children = (
+				23FFFD5D23FD0D40387CB092 /* ArtonTopShelf.entitlements */,
+				19FB204A91987E78D7CA015E /* Info.plist */,
+				483FCB4580539840B8FAEB7A /* TopShelfProvider.swift */,
+			);
+			name = "Arton-tvOS-TopShelf";
+			path = "../Arton-tvOS-TopShelf";
+			sourceTree = "<group>";
+		};
+		39061B8CE889C0EF5D642820 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				19CC8A53366DDCC0193EEEC6 /* ArtonCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		8BBEA53554A6F13753D3328F /* Arton-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				56CD013271FA917ED9465719 /* Arton.entitlements */,
+				8A3382331E2AB9B33EFF9353 /* ArtonApp.swift */,
+				2C4E325DEE22B8E55D4718DA /* ContentView.swift */,
+				53F6A6248B1A5DC44B5D3E18 /* GalleryPickerView.swift */,
+				66D9C1E03D477D290CEA2516 /* SettingsView.swift */,
+				D70356DB08315082FC1C1E6E /* SlideshowView.swift */,
+			);
+			name = "Arton-tvOS";
+			path = .;
+			sourceTree = "<group>";
+		};
+		94426CE7E9AC798070091152 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8783C2343AE857A39AF0CF58 /* Arton-tvOS.app */,
+				CF923BEB92AC484E5894935C /* ArtonTopShelf.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9454A4D63C5112B56C53573E = {
+			isa = PBXGroup;
+			children = (
+				8BBEA53554A6F13753D3328F /* Arton-tvOS */,
+				14906886FE829D6A3467FCB8 /* Arton-tvOS-TopShelf */,
+				39061B8CE889C0EF5D642820 /* Packages */,
+				94426CE7E9AC798070091152 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0135FD1C3E86EA02D841186C /* Arton-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BB3116BA01988131ABAE67A /* Build configuration list for PBXNativeTarget "Arton-tvOS" */;
+			buildPhases = (
+				AD4081C3C7D4D5DC56A4676C /* Sources */,
+				39913ED2FB29902F1B382BB8 /* Frameworks */,
+				2595F84AD5A743A66CA581FD /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E63E2715E38FA33FA42EB7CA /* PBXTargetDependency */,
+			);
+			name = "Arton-tvOS";
+			packageProductDependencies = (
+				DEDC784DDF3A07851B46F036 /* ArtonCore */,
+			);
+			productName = "Arton-tvOS";
+			productReference = 8783C2343AE857A39AF0CF58 /* Arton-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5C8671A3EA1896578A38511A /* ArtonTopShelf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3C4AA91FAA14DA11795196F /* Build configuration list for PBXNativeTarget "ArtonTopShelf" */;
+			buildPhases = (
+				DCD516244D3F92E21C21CEA2 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArtonTopShelf;
+			packageProductDependencies = (
+			);
+			productName = ArtonTopShelf;
+			productReference = CF923BEB92AC484E5894935C /* ArtonTopShelf.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1F30215596905C0572D994CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = E29DF44B909E1A02CB89637C /* Build configuration list for PBXProject "Arton-tvOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 9454A4D63C5112B56C53573E;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3BAA7DBE49D0CFBE23C9C94A /* XCLocalSwiftPackageReference "../ArtonCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0135FD1C3E86EA02D841186C /* Arton-tvOS */,
+				5C8671A3EA1896578A38511A /* ArtonTopShelf */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AD4081C3C7D4D5DC56A4676C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F730C24DDBBB92EF6670ABCC /* ArtonApp.swift in Sources */,
+				3529714D5DBA41100B177ED1 /* ContentView.swift in Sources */,
+				D3828CABC7F31E65D41B4A28 /* GalleryPickerView.swift in Sources */,
+				AB3C03DEA7B349C7BE0D5A4D /* SettingsView.swift in Sources */,
+				1F72EE6A75C9C986E0B281DC /* SlideshowView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCD516244D3F92E21C21CEA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7392A0E8E80AE4A085FB0DD6 /* TopShelfProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E63E2715E38FA33FA42EB7CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C8671A3EA1896578A38511A /* ArtonTopShelf */;
+			targetProxy = 8F14D6651D641C020D4FAE8E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		43F2393A4EB763AFDBE08CE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Release;
+		};
+		4E888E8441B20E41051D6913 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+			};
+			name = Debug;
+		};
+		60FFEA6C147FAB181A7F5721 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "../Arton-tvOS-TopShelf/ArtonTopShelf.entitlements";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "../Arton-tvOS-TopShelf/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arton.tvos.topshelf;
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+		8DD8CFD76885552D2C5E47F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Arton.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_GENERATION_MODE = GeneratedFile;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arton.tvos;
+				PRODUCT_NAME = Arton;
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		B7CC461DFEB1557CAD15B96C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Arton.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_GENERATION_MODE = GeneratedFile;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arton.tvos;
+				PRODUCT_NAME = Arton;
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+		D113D00EF331AE85C1CDA86B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "../Arton-tvOS-TopShelf/ArtonTopShelf.entitlements";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "../Arton-tvOS-TopShelf/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arton.tvos.topshelf;
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4BB3116BA01988131ABAE67A /* Build configuration list for PBXNativeTarget "Arton-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DD8CFD76885552D2C5E47F9 /* Debug */,
+				B7CC461DFEB1557CAD15B96C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C3C4AA91FAA14DA11795196F /* Build configuration list for PBXNativeTarget "ArtonTopShelf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D113D00EF331AE85C1CDA86B /* Debug */,
+				60FFEA6C147FAB181A7F5721 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E29DF44B909E1A02CB89637C /* Build configuration list for PBXProject "Arton-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E888E8441B20E41051D6913 /* Debug */,
+				43F2393A4EB763AFDBE08CE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		3BAA7DBE49D0CFBE23C9C94A /* XCLocalSwiftPackageReference "../ArtonCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../ArtonCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DEDC784DDF3A07851B46F036 /* ArtonCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ArtonCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1F30215596905C0572D994CB /* Project object */;
+}
