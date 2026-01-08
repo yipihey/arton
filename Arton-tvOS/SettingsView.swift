@@ -49,19 +49,27 @@ struct SettingsView: View {
                     Text("Current Settings")
                 }
 
+                // Beta Feedback section
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Send feedback to:")
+                            .foregroundStyle(.secondary)
+                        Text(ContentModerationService.supportEmail)
+                            .fontWeight(.medium)
+                    }
+                    .padding(.vertical, 4)
+                } header: {
+                    Text("Beta Feedback")
+                } footer: {
+                    Text("Use your phone or computer to email us your feedback.")
+                }
+
                 // About section
                 Section {
                     HStack {
                         Text("Version")
                         Spacer()
                         Text(appVersion)
-                            .foregroundStyle(.secondary)
-                    }
-
-                    HStack {
-                        Text("Support")
-                        Spacer()
-                        Text(ContentModerationService.supportEmail)
                             .foregroundStyle(.secondary)
                     }
                 } header: {

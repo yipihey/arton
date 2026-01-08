@@ -10,6 +10,8 @@ public struct AppSettingsView: View {
         List {
             #if !os(tvOS)
             privacySection
+
+            betaFeedbackSection
             #endif
 
             aboutSection
@@ -48,6 +50,33 @@ public struct AppSettingsView: View {
         } footer: {
             Text("Blocked users' galleries won't appear in your Explore feed.")
         }
+    }
+
+    private var betaFeedbackSection: some View {
+        Section {
+            Link(destination: feedbackMailtoURL) {
+                HStack {
+                    Label("Send Feedback", systemImage: "envelope")
+                    Spacer()
+                    Image(systemName: "arrow.up.right")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .foregroundStyle(.primary)
+        } header: {
+            Text("Beta")
+        } footer: {
+            Text("Help us improve Arton by sharing your feedback.")
+        }
+    }
+
+    private var feedbackMailtoURL: URL {
+        let subject = "Arton Beta Feedback"
+        let body = "App Version: \(appVersion)\n\n"
+        let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject
+        let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? body
+        return URL(string: "mailto:\(ContentModerationService.supportEmail)?subject=\(encodedSubject)&body=\(encodedBody)")!
     }
     #endif
 

@@ -319,8 +319,8 @@ public class ContentModerationService: ObservableObject {
 
     // MARK: - App Information
 
-    /// Contact email for support
-    public static let supportEmail = "support@arton.app"
+    /// Contact email for beta feedback and support
+    public static let supportEmail = "arton@tomabel.org"
 
     /// Terms of Service URL
     public static let termsOfServiceURL = URL(string: "https://arton.app/terms")!
