@@ -48,6 +48,45 @@ struct SettingsView: View {
                 } header: {
                     Text("Current Settings")
                 }
+
+                // About section
+                Section {
+                    HStack {
+                        Text("Version")
+                        Spacer()
+                        Text(appVersion)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    HStack {
+                        Text("Support")
+                        Spacer()
+                        Text(ContentModerationService.supportEmail)
+                            .foregroundStyle(.secondary)
+                    }
+                } header: {
+                    Text("About")
+                }
+
+                // Legal section
+                Section {
+                    Button("Terms of Service") {
+                        // On tvOS, we just show a message since we can't open URLs
+                        // In a real app, this could show a sheet with the ToS text
+                    }
+
+                    Button("Privacy Policy") {
+                        // On tvOS, we just show a message since we can't open URLs
+                    }
+
+                    Button("Community Guidelines") {
+                        // On tvOS, we just show a message since we can't open URLs
+                    }
+                } header: {
+                    Text("Legal")
+                } footer: {
+                    Text("Visit arton.app on your phone or computer to view these documents.")
+                }
             }
             .navigationTitle("Settings")
             .toolbar {
@@ -161,6 +200,13 @@ struct SettingsView: View {
             return preset.name
         }
         return "\(Int(currentPadding * 100))%"
+    }
+
+    /// App version string
+    private var appVersion: String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
+        return "\(version) (\(build))"
     }
 }
 

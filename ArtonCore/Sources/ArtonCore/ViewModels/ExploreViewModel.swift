@@ -13,8 +13,16 @@ public class ExploreViewModel: ObservableObject {
 
     private var cursor: CKQueryOperation.Cursor?
     private let sharingService = CloudKitSharingService.shared
+    private let moderationService = ContentModerationService.shared
 
     public init() {}
+
+    /// Filter galleries by removing blocked users
+    private func filterBlockedUsers(_ galleries: [SharedGallery]) async -> [SharedGallery] {
+        let blockedIDs = await moderationService.blockedUserRecordIDs()
+        guard !blockedIDs.isEmpty else { return galleries }
+        return galleries.filter { !blockedIDs.contains($0.ownerRecordID) }
+    }
 
     /// Load the initial batch of public galleries
     public func loadInitial() async {
@@ -25,7 +33,7 @@ public class ExploreViewModel: ObservableObject {
 
         do {
             let result = try await sharingService.fetchPublicGalleries(limit: 20)
-            galleries = result.galleries
+            galleries = await filterBlockedUsers(result.galleries)
             cursor = result.cursor
             hasMore = result.cursor != nil
         } catch {
@@ -45,7 +53,8 @@ public class ExploreViewModel: ObservableObject {
 
             do {
                 let result = try await sharingService.fetchPublicGalleries(cursor: cursor, limit: 20)
-                galleries.append(contentsOf: result.galleries)
+                let filtered = await filterBlockedUsers(result.galleries)
+                galleries.append(contentsOf: filtered)
                 cursor = result.cursor
                 hasMore = result.cursor != nil
             } catch {

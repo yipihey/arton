@@ -10,6 +10,7 @@ struct ContentView: View {
     enum Tab {
         case galleries
         case explore
+        case settings
     }
 
     init(deepLinkGalleryID: Binding<String?> = .constant(nil)) {
@@ -34,6 +35,14 @@ struct ContentView: View {
                 Label("Explore", systemImage: "globe")
             }
             .tag(Tab.explore)
+
+            NavigationStack {
+                AppSettingsView()
+            }
+            .tabItem {
+                Label("Settings", systemImage: "gearshape")
+            }
+            .tag(Tab.settings)
         }
         .onChange(of: deepLinkGalleryID) { _, newValue in
             if let galleryID = newValue {

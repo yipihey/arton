@@ -5,7 +5,11 @@ public struct SharedGalleryDetailView: View {
     public let gallery: SharedGallery
 
     @StateObject private var viewModel: SharedGalleryViewModel
+    @StateObject private var moderationService = ContentModerationService.shared
     @State private var selectedImage: SharedImage?
+    @State private var showingReportSheet = false
+    @State private var showingBlockConfirmation = false
+    @State private var blockError: String?
 
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -50,6 +54,49 @@ public struct SharedGalleryDetailView: View {
         .task {
             if viewModel.images.isEmpty {
                 await viewModel.loadImages()
+            }
+        }
+        .sheet(isPresented: $showingReportSheet) {
+            ReportContentSheet(
+                galleryID: gallery.id,
+                galleryName: gallery.name,
+                ownerName: gallery.ownerName
+            )
+        }
+        .confirmationDialog(
+            "Block User",
+            isPresented: $showingBlockConfirmation
+        ) {
+            Button("Block \(gallery.ownerName)", role: .destructive) {
+                blockUser()
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Galleries from \(gallery.ownerName) will no longer appear in your Explore feed. You can unblock them later in Settings.")
+        }
+        .alert("Error", isPresented: .init(
+            get: { blockError != nil },
+            set: { if !$0 { blockError = nil } }
+        )) {
+            Button("OK") { blockError = nil }
+        } message: {
+            if let error = blockError {
+                Text(error)
+            }
+        }
+    }
+
+    // MARK: - Actions
+
+    private func blockUser() {
+        Task {
+            do {
+                try await moderationService.blockUser(
+                    ownerRecordID: gallery.ownerRecordID,
+                    ownerName: gallery.ownerName
+                )
+            } catch {
+                blockError = error.localizedDescription
             }
         }
     }
@@ -164,6 +211,32 @@ public struct SharedGalleryDetailView: View {
         ToolbarItem(placement: .primaryAction) {
             ShareLink(item: gallery.shareURL) {
                 Label("Share Link", systemImage: "link")
+            }
+        }
+
+        ToolbarItem(placement: .secondaryAction) {
+            Menu {
+                Button {
+                    showingReportSheet = true
+                } label: {
+                    Label("Report Gallery", systemImage: "flag")
+                }
+
+                Button(role: .destructive) {
+                    showingBlockConfirmation = true
+                } label: {
+                    Label("Block User", systemImage: "person.slash")
+                }
+            } label: {
+                Label("More", systemImage: "ellipsis.circle")
+            }
+        }
+        #elseif os(tvOS)
+        ToolbarItem(placement: .primaryAction) {
+            Button {
+                showingReportSheet = true
+            } label: {
+                Label("Report", systemImage: "flag")
             }
         }
         #endif

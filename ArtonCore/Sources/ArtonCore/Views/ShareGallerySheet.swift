@@ -8,15 +8,20 @@ public struct ShareGallerySheet: View {
 
     @Environment(\.dismiss) private var dismiss
     @StateObject private var sharingService = CloudKitSharingService.shared
+    @StateObject private var moderationService = ContentModerationService.shared
 
     @State private var description: String = ""
     @State private var isPublic: Bool = true
     @State private var isUploading = false
+    @State private var isScreening = false
     @State private var uploadProgress: Double = 0
     @State private var uploadStatus: String = ""
     @State private var errorMessage: String?
     @State private var sharedGallery: SharedGallery?
     @State private var showCopiedToast = false
+    @State private var sensitiveImageIndices: [Int] = []
+    @State private var showSensitiveContentWarning = false
+    @State private var imagesToUpload: [ArtworkImage] = []
 
     public init(gallery: Gallery, images: [ArtworkImage]) {
         self.gallery = gallery
@@ -28,6 +33,14 @@ public struct ShareGallerySheet: View {
             Form {
                 galleryInfoSection
                 visibilitySection
+
+                if isScreening {
+                    screeningSection
+                }
+
+                if showSensitiveContentWarning && !sensitiveImageIndices.isEmpty {
+                    sensitiveContentWarningSection
+                }
 
                 if isUploading {
                     uploadingSection
@@ -56,9 +69,9 @@ public struct ShareGallerySheet: View {
                 if sharedGallery == nil {
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Share") {
-                            uploadGallery()
+                            startSharing()
                         }
-                        .disabled(isUploading || images.isEmpty)
+                        .disabled(isUploading || isScreening || images.isEmpty)
                     }
                 } else {
                     ToolbarItem(placement: .confirmationAction) {
@@ -124,6 +137,61 @@ public struct ShareGallerySheet: View {
             }
         } header: {
             Text("Visibility")
+        }
+    }
+
+    private var screeningSection: some View {
+        Section {
+            VStack(spacing: 12) {
+                ProgressView()
+                    .scaleEffect(1.2)
+
+                Text("Checking images for sensitive content...")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 8)
+        } header: {
+            Text("Content Review")
+        }
+    }
+
+    private var sensitiveContentWarningSection: some View {
+        Section {
+            Label {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("\(sensitiveImageIndices.count) image\(sensitiveImageIndices.count == 1 ? "" : "s") may contain sensitive content")
+                        .fontWeight(.medium)
+
+                    Text("These images will be excluded from the shared gallery to comply with community guidelines.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            } icon: {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundStyle(.orange)
+            }
+
+            HStack {
+                Text("Images to upload")
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text("\(imagesToUpload.count) of \(images.count)")
+            }
+
+            Button("Continue with \(imagesToUpload.count) images") {
+                uploadGalleryWithFilteredImages()
+            }
+            .disabled(imagesToUpload.isEmpty)
+
+            Button("Cancel", role: .cancel) {
+                showSensitiveContentWarning = false
+                sensitiveImageIndices = []
+                imagesToUpload = []
+            }
+        } header: {
+            Text("Sensitive Content Detected")
         }
     }
 
@@ -206,7 +274,78 @@ public struct ShareGallerySheet: View {
 
     // MARK: - Actions
 
+    private func startSharing() {
+        // Reset state
+        errorMessage = nil
+        sensitiveImageIndices = []
+        showSensitiveContentWarning = false
+        imagesToUpload = images
+
+        // Check if content analysis is available
+        if #available(iOS 17.0, macOS 14.0, *) {
+            if moderationService.isContentAnalysisAvailable {
+                screenImages()
+                return
+            }
+        }
+
+        // If content analysis not available, upload directly
+        uploadGallery()
+    }
+
+    private func screenImages() {
+        isScreening = true
+
+        Task {
+            if #available(iOS 17.0, macOS 14.0, *) {
+                // Load images and analyze them
+                var flaggedIndices: [Int] = []
+
+                for (index, artworkImage) in images.enumerated() {
+                    if let data = try? Data(contentsOf: artworkImage.fileURL),
+                       let platformImg = loadPlatformImage(from: data) {
+                        let result = await moderationService.analyzeImage(platformImg)
+                        if result.isSensitive {
+                            flaggedIndices.append(index)
+                        }
+                    }
+                }
+
+                sensitiveImageIndices = flaggedIndices
+                isScreening = false
+
+                if flaggedIndices.isEmpty {
+                    // No sensitive content found - proceed with upload
+                    uploadGallery()
+                } else {
+                    // Sensitive content found - show warning and filter images
+                    imagesToUpload = images.enumerated()
+                        .filter { !flaggedIndices.contains($0.offset) }
+                        .map { $0.element }
+                    showSensitiveContentWarning = true
+                }
+            } else {
+                isScreening = false
+                uploadGallery()
+            }
+        }
+    }
+
+    private func uploadGalleryWithFilteredImages() {
+        showSensitiveContentWarning = false
+        performUpload(with: imagesToUpload)
+    }
+
     private func uploadGallery() {
+        performUpload(with: images)
+    }
+
+    private func performUpload(with imagesToShare: [ArtworkImage]) {
+        guard !imagesToShare.isEmpty else {
+            errorMessage = "No images to upload after content filtering."
+            return
+        }
+
         isUploading = true
         errorMessage = nil
         uploadProgress = 0
@@ -216,7 +355,7 @@ public struct ShareGallerySheet: View {
             do {
                 let shared = try await sharingService.shareGallery(
                     gallery,
-                    images: images,
+                    images: imagesToShare,
                     description: description.isEmpty ? nil : description,
                     isPublic: isPublic
                 ) { progress, status in
@@ -234,6 +373,14 @@ public struct ShareGallerySheet: View {
                 isUploading = false
             }
         }
+    }
+
+    private func loadPlatformImage(from data: Data) -> PlatformImage? {
+        #if canImport(UIKit)
+        return UIImage(data: data)
+        #elseif canImport(AppKit)
+        return NSImage(data: data)
+        #endif
     }
 
     private func copyLinkToClipboard(_ url: URL) {

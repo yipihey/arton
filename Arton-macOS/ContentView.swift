@@ -4,6 +4,7 @@ import ArtonCore
 enum SidebarSection: Hashable {
     case gallery(Gallery)
     case explore
+    case settings
 }
 
 struct ContentView: View {
@@ -140,6 +141,12 @@ struct ContentView: View {
             } header: {
                 Text("Community")
             }
+
+            // Settings section
+            Section {
+                Label("Settings", systemImage: "gearshape")
+                    .tag(SidebarSection.settings)
+            }
         }
         .listStyle(.sidebar)
         .toolbar {
@@ -231,6 +238,8 @@ struct ContentView: View {
             GalleryDetailView(gallery: gallery)
         case .explore:
             ExploreView()
+        case .settings:
+            AppSettingsView()
         case .none:
             emptyDetailView
         }
