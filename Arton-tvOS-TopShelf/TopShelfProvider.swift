@@ -96,11 +96,14 @@ class ContentProvider: TVTopShelfContentProvider {
     }
 
     private func createPlaceholderContent(message: String) -> TVTopShelfContent {
-        // Create inset content with a message
-        let item = TVTopShelfInsetItem(identifier: "placeholder")
-        item.title = "Arton"
+        // Create sectioned content with a placeholder message
+        let item = TVTopShelfSectionedItem(identifier: "placeholder")
+        item.title = message
 
-        let content = TVTopShelfInsetContent(items: [item])
+        let section = TVTopShelfItemCollection(items: [item])
+        section.title = "Arton"
+
+        let content = TVTopShelfSectionedContent(sections: [section])
         return content
     }
 }
