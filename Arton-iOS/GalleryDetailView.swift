@@ -15,6 +15,7 @@ struct GalleryDetailView: View {
     @State private var isImporting = false
     @State private var imageToDelete: ArtworkImage?
     @State private var showingDeleteConfirmation = false
+    @State private var showingShareSheet = false
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
@@ -47,6 +48,14 @@ struct GalleryDetailView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 HStack(spacing: 16) {
+                    // Share button
+                    Button {
+                        showingShareSheet = true
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    .disabled(images.isEmpty)
+
                     // Display Mode button
                     Button {
                         showingSlideshow = true
@@ -92,6 +101,9 @@ struct GalleryDetailView: View {
         }
         .sheet(isPresented: $showingSettings) {
             settingsSheet
+        }
+        .sheet(isPresented: $showingShareSheet) {
+            ShareGallerySheet(gallery: gallery, images: images)
         }
         .alert("Delete Image", isPresented: $showingDeleteConfirmation, presenting: imageToDelete) { image in
             Button("Cancel", role: .cancel) { }

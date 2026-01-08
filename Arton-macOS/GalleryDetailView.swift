@@ -11,6 +11,7 @@ struct GalleryDetailView: View {
     @State private var isLoading = true
     @State private var isDropTargeted = false
     @State private var showingSettings = false
+    @State private var showingShareSheet = false
     @State private var gallerySettings = GallerySettings.default
     @State private var errorMessage: String?
 
@@ -42,6 +43,10 @@ struct GalleryDetailView: View {
         }
         .sheet(isPresented: $showingSettings) {
             settingsSheet
+        }
+        .sheet(isPresented: $showingShareSheet) {
+            ShareGallerySheet(gallery: gallery, images: images)
+                .frame(minWidth: 450, minHeight: 400)
         }
         .alert("Error", isPresented: .init(
             get: { errorMessage != nil },
@@ -197,6 +202,14 @@ struct GalleryDetailView: View {
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItemGroup(placement: .primaryAction) {
+            Button {
+                showingShareSheet = true
+            } label: {
+                Label("Share", systemImage: "square.and.arrow.up")
+            }
+            .help("Share this gallery")
+            .disabled(images.isEmpty)
+
             Button {
                 showFilePicker()
             } label: {

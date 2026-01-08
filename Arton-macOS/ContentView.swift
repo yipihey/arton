@@ -1,15 +1,27 @@
 import SwiftUI
 import ArtonCore
 
+enum SidebarSection: Hashable {
+    case gallery(Gallery)
+    case explore
+}
+
 struct ContentView: View {
+    @Binding var deepLinkGalleryID: String?
     @StateObject private var galleryManager = GalleryManager.shared
-    @State private var selectedGallery: Gallery?
+    @State private var selectedSection: SidebarSection?
     @State private var showingNewGallerySheet = false
     @State private var newGalleryName = ""
     @State private var galleryToDelete: Gallery?
     @State private var showingDeleteConfirmation = false
     @State private var renamingGallery: Gallery?
     @State private var renameText = ""
+    @State private var deepLinkSharedGallery: SharedGallery?
+    @State private var isLoadingDeepLink = false
+
+    init(deepLinkGalleryID: Binding<String?> = .constant(nil)) {
+        self._deepLinkGalleryID = deepLinkGalleryID
+    }
 
     var body: some View {
         NavigationSplitView {
@@ -33,8 +45,8 @@ struct ContentView: View {
             Button("Delete \"\(gallery.name)\"", role: .destructive) {
                 Task {
                     try? await galleryManager.deleteGallery(gallery)
-                    if selectedGallery?.id == gallery.id {
-                        selectedGallery = nil
+                    if case .gallery(let selected) = selectedSection, selected.id == gallery.id {
+                        selectedSection = nil
                     }
                 }
             }
@@ -42,26 +54,91 @@ struct ContentView: View {
         } message: { gallery in
             Text("Are you sure you want to delete \"\(gallery.name)\"? This will permanently remove the gallery and all its images.")
         }
+        .onChange(of: deepLinkGalleryID) { _, newValue in
+            if let galleryID = newValue {
+                handleDeepLink(galleryID: galleryID)
+            }
+        }
+        .sheet(item: $deepLinkSharedGallery) { gallery in
+            NavigationStack {
+                SharedGalleryDetailView(gallery: gallery)
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Close") {
+                                deepLinkSharedGallery = nil
+                            }
+                        }
+                    }
+            }
+            .frame(minWidth: 600, minHeight: 500)
+        }
+        .overlay {
+            if isLoadingDeepLink {
+                deepLinkLoadingOverlay
+            }
+        }
+    }
+
+    private func handleDeepLink(galleryID: String) {
+        isLoadingDeepLink = true
+
+        Task {
+            do {
+                if let gallery = try await CloudKitSharingService.shared.fetchGallery(id: galleryID) {
+                    deepLinkSharedGallery = gallery
+                }
+            } catch {
+                // Gallery not found or error - ignore
+            }
+            isLoadingDeepLink = false
+            deepLinkGalleryID = nil
+        }
+    }
+
+    private var deepLinkLoadingOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.3)
+                .ignoresSafeArea()
+
+            VStack(spacing: 16) {
+                ProgressView()
+                    .scaleEffect(1.5)
+
+                Text("Opening gallery...")
+                    .font(.headline)
+            }
+            .padding(32)
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+        }
     }
 
     // MARK: - Sidebar
 
     private var sidebar: some View {
-        List(selection: $selectedGallery) {
+        List(selection: $selectedSection) {
+            // My Galleries section
             Section {
                 ForEach(galleryManager.galleries) { gallery in
                     galleryRow(gallery)
-                        .tag(gallery)
+                        .tag(SidebarSection.gallery(gallery))
                 }
             } header: {
                 HStack {
-                    Text("Galleries")
+                    Text("My Galleries")
                     Spacer()
                     if galleryManager.isLoading {
                         ProgressView()
                             .scaleEffect(0.5)
                     }
                 }
+            }
+
+            // Explore section
+            Section {
+                Label("Explore", systemImage: "globe")
+                    .tag(SidebarSection.explore)
+            } header: {
+                Text("Community")
             }
         }
         .listStyle(.sidebar)
@@ -149,9 +226,12 @@ struct ContentView: View {
 
     @ViewBuilder
     private var detailView: some View {
-        if let gallery = selectedGallery {
+        switch selectedSection {
+        case .gallery(let gallery):
             GalleryDetailView(gallery: gallery)
-        } else {
+        case .explore:
+            ExploreView()
+        case .none:
             emptyDetailView
         }
     }
@@ -166,11 +246,11 @@ struct ContentView: View {
                 .font(.title2)
                 .foregroundStyle(.secondary)
 
-            Text("Choose a gallery from the sidebar to view and manage its images.")
+            Text("Choose a gallery from the sidebar to view and manage its images,\nor explore publicly shared galleries.")
                 .font(.body)
                 .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: 300)
+                .frame(maxWidth: 350)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -213,7 +293,7 @@ struct ContentView: View {
         Task {
             do {
                 let gallery = try await galleryManager.createGallery(named: trimmedName)
-                selectedGallery = gallery
+                selectedSection = .gallery(gallery)
                 showingNewGallerySheet = false
             } catch {
                 // Handle error - could show an alert here

@@ -2,6 +2,91 @@ import SwiftUI
 import ArtonCore
 
 struct ContentView: View {
+    @Binding var deepLinkGalleryID: String?
+    @State private var selectedTab: Tab = .galleries
+    @State private var deepLinkSharedGallery: SharedGallery?
+    @State private var isLoadingDeepLink = false
+
+    enum Tab {
+        case galleries
+        case explore
+    }
+
+    init(deepLinkGalleryID: Binding<String?> = .constant(nil)) {
+        self._deepLinkGalleryID = deepLinkGalleryID
+    }
+
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            GalleriesTab()
+                .tabItem {
+                    Label("My Galleries", systemImage: "photo.on.rectangle")
+                }
+                .tag(Tab.galleries)
+
+            NavigationStack {
+                ExploreView()
+                    .navigationDestination(item: $deepLinkSharedGallery) { gallery in
+                        SharedGalleryDetailView(gallery: gallery)
+                    }
+            }
+            .tabItem {
+                Label("Explore", systemImage: "globe")
+            }
+            .tag(Tab.explore)
+        }
+        .onChange(of: deepLinkGalleryID) { _, newValue in
+            if let galleryID = newValue {
+                handleDeepLink(galleryID: galleryID)
+            }
+        }
+        .overlay {
+            if isLoadingDeepLink {
+                deepLinkLoadingOverlay
+            }
+        }
+    }
+
+    private func handleDeepLink(galleryID: String) {
+        isLoadingDeepLink = true
+        selectedTab = .explore
+
+        Task {
+            do {
+                if let gallery = try await CloudKitSharingService.shared.fetchGallery(id: galleryID) {
+                    deepLinkSharedGallery = gallery
+                }
+            } catch {
+                // Gallery not found or error - ignore
+            }
+            isLoadingDeepLink = false
+            deepLinkGalleryID = nil
+        }
+    }
+
+    private var deepLinkLoadingOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+
+            VStack(spacing: 16) {
+                ProgressView()
+                    .scaleEffect(1.5)
+                    .tint(.white)
+
+                Text("Opening gallery...")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+            }
+            .padding(32)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
+        }
+    }
+}
+
+// MARK: - Galleries Tab
+
+struct GalleriesTab: View {
     @StateObject private var galleryManager = GalleryManager.shared
     @State private var showingNewGallerySheet = false
     @State private var newGalleryName = ""
@@ -14,10 +99,8 @@ struct ContentView: View {
     var body: some View {
         Group {
             if horizontalSizeClass == .regular {
-                // iPad: Sidebar + Detail layout
                 iPadNavigationView
             } else {
-                // iPhone: Stack navigation
                 iPhoneNavigationView
             }
         }
