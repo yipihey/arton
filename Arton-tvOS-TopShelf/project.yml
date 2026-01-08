@@ -6,7 +6,7 @@ options:
 
 targets:
   ArtonTopShelf:
-    type: tv-services-extension
+    type: app-extension
     platform: tvOS
     sources:
       - path: .
@@ -21,6 +21,8 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         CURRENT_PROJECT_VERSION: 1
         MARKETING_VERSION: 1.0
+        PRODUCT_NAME: ArtonTopShelf
+    productType: com.apple.product-type.tv-app-extension
     entitlements:
       path: ArtonTopShelf.entitlements
       properties:
