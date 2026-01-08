@@ -16,9 +16,21 @@ struct GalleryDetailView: View {
     @State private var imageToDelete: ArtworkImage?
     @State private var showingDeleteConfirmation = false
 
-    private let columns = [
-        GridItem(.adaptive(minimum: 100, maximum: 150), spacing: 8)
-    ]
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    private var columns: [GridItem] {
+        if horizontalSizeClass == .regular {
+            // iPad: larger thumbnails with more spacing
+            [GridItem(.adaptive(minimum: 180, maximum: 250), spacing: 12)]
+        } else {
+            // iPhone: compact thumbnails
+            [GridItem(.adaptive(minimum: 100, maximum: 150), spacing: 8)]
+        }
+    }
+
+    private var thumbnailSize: CGFloat {
+        horizontalSizeClass == .regular ? 200 : 120
+    }
 
     var body: some View {
         Group {
@@ -97,9 +109,9 @@ struct GalleryDetailView: View {
 
     private var imageGrid: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 8) {
+            LazyVGrid(columns: columns, spacing: horizontalSizeClass == .regular ? 12 : 8) {
                 ForEach(images) { image in
-                    ArtworkThumbnailView(image: image, size: 120)
+                    ArtworkThumbnailView(image: image, size: thumbnailSize)
                         .contextMenu {
                             Button(role: .destructive) {
                                 imageToDelete = image
@@ -110,7 +122,7 @@ struct GalleryDetailView: View {
                         }
                 }
             }
-            .padding()
+            .padding(horizontalSizeClass == .regular ? 20 : 16)
         }
     }
 

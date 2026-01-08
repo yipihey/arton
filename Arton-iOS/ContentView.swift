@@ -7,8 +7,73 @@ struct ContentView: View {
     @State private var newGalleryName = ""
     @State private var galleryToDelete: Gallery?
     @State private var showingDeleteConfirmation = false
+    @State private var selectedGallery: Gallery?
+
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     var body: some View {
+        Group {
+            if horizontalSizeClass == .regular {
+                // iPad: Sidebar + Detail layout
+                iPadNavigationView
+            } else {
+                // iPhone: Stack navigation
+                iPhoneNavigationView
+            }
+        }
+        .task {
+            await galleryManager.loadGalleries()
+        }
+        .sheet(isPresented: $showingNewGallerySheet) {
+            newGallerySheet
+        }
+        .alert("Delete Gallery", isPresented: $showingDeleteConfirmation, presenting: galleryToDelete) { gallery in
+            Button("Cancel", role: .cancel) { }
+            Button("Delete", role: .destructive) {
+                Task {
+                    try? await galleryManager.deleteGallery(gallery)
+                    if selectedGallery?.id == gallery.id {
+                        selectedGallery = nil
+                    }
+                }
+            }
+        } message: { gallery in
+            Text("Are you sure you want to delete \"\(gallery.name)\"? This will permanently remove all images in the gallery.")
+        }
+    }
+
+    // MARK: - iPad Navigation (Split View)
+
+    private var iPadNavigationView: some View {
+        NavigationSplitView {
+            sidebarContent
+                .navigationTitle("Galleries")
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button {
+                            newGalleryName = ""
+                            showingNewGallerySheet = true
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                    }
+                }
+        } detail: {
+            if let gallery = selectedGallery {
+                GalleryDetailView(gallery: gallery)
+            } else {
+                ContentUnavailableView(
+                    "Select a Gallery",
+                    systemImage: "photo.on.rectangle.angled",
+                    description: Text("Choose a gallery from the sidebar to view its contents")
+                )
+            }
+        }
+    }
+
+    // MARK: - iPhone Navigation (Stack)
+
+    private var iPhoneNavigationView: some View {
         NavigationStack {
             Group {
                 if galleryManager.isLoading && galleryManager.galleries.isEmpty {
@@ -34,21 +99,41 @@ struct ContentView: View {
                 await galleryManager.loadGalleries()
             }
         }
-        .task {
-            await galleryManager.loadGalleries()
+    }
+
+    // MARK: - Sidebar Content (iPad)
+
+    private var sidebarContent: some View {
+        Group {
+            if galleryManager.isLoading && galleryManager.galleries.isEmpty {
+                loadingView
+            } else if galleryManager.galleries.isEmpty {
+                emptyStateView
+            } else {
+                sidebarList
+            }
         }
-        .sheet(isPresented: $showingNewGallerySheet) {
-            newGallerySheet
-        }
-        .alert("Delete Gallery", isPresented: $showingDeleteConfirmation, presenting: galleryToDelete) { gallery in
-            Button("Cancel", role: .cancel) { }
-            Button("Delete", role: .destructive) {
-                Task {
-                    try? await galleryManager.deleteGallery(gallery)
+    }
+
+    private var sidebarList: some View {
+        List(selection: $selectedGallery) {
+            ForEach(galleryManager.galleries) { gallery in
+                NavigationLink(value: gallery) {
+                    GalleryRowView(gallery: gallery, thumbnailSize: 100)
+                }
+                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                    Button(role: .destructive) {
+                        galleryToDelete = gallery
+                        showingDeleteConfirmation = true
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
                 }
             }
-        } message: { gallery in
-            Text("Are you sure you want to delete \"\(gallery.name)\"? This will permanently remove all images in the gallery.")
+        }
+        .listStyle(.sidebar)
+        .refreshable {
+            await galleryManager.loadGalleries()
         }
     }
 
