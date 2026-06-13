@@ -1,2 +1,2 @@
 # arton
-Curate and aerve art on AppleTV 
+Curate and serve art on AppleTV 
